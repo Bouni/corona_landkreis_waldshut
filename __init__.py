@@ -1,11 +1,12 @@
 import logging
+import os
 import re
 from datetime import timedelta as td
 
 import aiohttp
 from homeassistant.util import Throttle
 
-from .const import PATTERNS
+from .const import MAP, PATTERNS
 
 LOGGER = logging.getLogger(__name__)
 
@@ -13,7 +14,6 @@ DOMAIN = "corona_landkreis_waldshut"
 
 MIN_TIME_BETWEEN_UPDATES = td(seconds=1800)
 
-# URL = "https://www.landkreis-waldshut.de/nc/aktuelles/informationen-zum-neuartigen-coronavirus/"
 URL = "https://www.landkreis-waldshut.de/aktuelles/informationen-zum-neuartigen-coronavirus"
 
 
@@ -30,9 +30,7 @@ class CoronaLandkreisWaldshut:
     def __init__(self):
         self.data = {
             "total": None,
-            "delta_active": None,
             "active": None,
-            "delta_recovered": None,
             "recovered": None,
             "deaths": None,
             "incidence": None,
@@ -59,3 +57,10 @@ class CoronaLandkreisWaldshut:
                         LOGGER.error(e)
                         self.data[s] = None
                     LOGGER.debug("Found value %s for %s", self.data[s], s)
+                try:
+                    v = re.search(MAP, data).group(1)
+                    url = f"https://www.landkreis-waldshut.de{v}"
+                    LOGGER.error(f"We are in {os.getcwd()} at the moment, the URL is {url}")
+                except Exception as e:
+                    LOGGER.error("Failed to get map url")
+                    LOGGER.error(e)
