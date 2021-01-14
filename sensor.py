@@ -22,6 +22,7 @@ def async_setup_platform(hass, config, async_add_devices, discovery_info=None):
     devices = []
     for sensor, icon in SENSORS.items():
         devices.append(CoronaWTSensor(hass, sensor, icon, api))
+    devices.append(CoronaWTSensor(hass, 'map', 'mdi:map', api))
     async_add_devices(devices)
     LOGGER.debug("Platform setup done")
 

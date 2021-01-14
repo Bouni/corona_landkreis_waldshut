@@ -15,4 +15,4 @@ PATTERNS = {
     "incidence": {"p": r"7-Tage-Inzidenz: ([\d,]+)", "t": "float"}
 }
 
-MAP = r"<img class=\"image-embed-item\" src=\"(\/fileadmin\/_processed_\/8\/5\/.*Covid[^\"]*)"
+MAP = r"<a.*><img class=\"image-embed-item\" src=\"([^\"]*)"

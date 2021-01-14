@@ -34,6 +34,7 @@ class CoronaLandkreisWaldshut:
             "recovered": None,
             "deaths": None,
             "incidence": None,
+            "map": None
         }
 
     async def get_data(self, sensor):
@@ -59,8 +60,14 @@ class CoronaLandkreisWaldshut:
                     LOGGER.debug("Found value %s for %s", self.data[s], s)
                 try:
                     v = re.search(MAP, data).group(1)
-                    url = f"https://www.landkreis-waldshut.de{v}"
-                    LOGGER.error(f"We are in {os.getcwd()} at the moment, the URL is {url}")
+                    filename = v.split("/")[-1]
+                    imageurl = f"https://www.landkreis-waldshut.de{v}"
+                    async with session.get(imageurl) as resp:
+                        image = await resp.read()
+                        with open(f'./www/{filename}', mode='wb') as f:
+                            f.write(image)
+                            self.data['map'] = f"/local/{filename}"
+                    LOGGER.debug(f"The map image URL is {imageurl} which we stored at /local/{filename}")
                 except Exception as e:
                     LOGGER.error("Failed to get map url")
                     LOGGER.error(e)
