@@ -1,5 +1,7 @@
 # Corona Landkreis Waldshut
 
+[![Validate with hassfest](https://github.com/Bouni/corona_landkreis_waldshut/actions/workflows/hassfest.yml/badge.svg)](https://github.com/Bouni/corona_landkreis_waldshut/actions/workflows/hassfest.yml)
+
 This component has been created to be used with Home Assistant.
 
 Corona Landkreis Waldshut allows you to track corona data issued by Gesundheitsamt Waldshut in Home Assistant.
