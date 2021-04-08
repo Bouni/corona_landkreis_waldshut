@@ -1,12 +1,13 @@
 {
   "domain": "corona_landkreis_waldshut",
   "name": "Corona Landkreis Waldshut",
+  "version": "0.0.1",
   "documentation": "",
   "requirements": [
-    "requests"
+    "aiohttp"
   ],
   "dependencies": [],
   "codeowners": [
-    "Bouni"
+    "@bouni"
   ]
 }
