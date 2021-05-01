@@ -2,6 +2,7 @@
   "domain": "corona_landkreis_waldshut",
   "name": "Corona Landkreis Waldshut",
   "version": "0.0.1",
+  "iot_class": "cloud_polling",
   "documentation": "https://github.com/Bouni/corona_landkreis_waldshut",
   "requirements": [
     "aiohttp"
